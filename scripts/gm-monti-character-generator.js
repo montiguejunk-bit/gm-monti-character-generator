@@ -1,47 +1,49 @@
 Hooks.once("ready", () => {
-  console.log("GM Monti Character Generator loaded!");
+  console.log("GM Monti Character Generator v0.3.0 loaded");
 
-  class GMMontiGenerator extends FormApplication {
-    static get defaultOptions() {
-      return foundry.utils.mergeObject(super.defaultOptions, {
+  game.gmMontiCharacterGenerator = {
+    open() {
+      new Dialog({
         title: "GM Monti Character Generator",
-        id: "gm-monti-character-generator",
-        width: 500,
-        height: 300
-      });
+        content: `
+          <div class="gm-monti-character-generator">
+            <h2>GM Monti Character Generator</h2>
+            <p>The generator window is working.</p>
+            <button type="button" id="gm-monti-generate">Generate Character</button>
+          </div>
+        `,
+        buttons: {
+          close: {
+            label: "Close"
+          }
+        },
+        render: (html) => {
+          html.find("#gm-monti-generate").click(() => {
+            ui.notifications.info("Generate Character clicked.");
+          });
+        }
+      }).render(true);
     }
+  };
 
-    async _renderInner() {
-      return $(`
-        <div style="padding:20px;">
-          <h2>GM Monti Character Generator</h2>
-          <button id="generate">Generate Character</button>
-        </div>
-      `);
-    }
-  }
+  ui.notifications.info("GM Monti Character Generator loaded.");
+});
 
-  game.settings.register(
-    "gm-monti-character-generator",
-    "dummy",
-    {
-      scope: "world",
-      config: false,
-      type: Boolean,
-      default: true
-    }
-  );
-
-  game.settings.registerMenu(
-    "gm-monti-character-generator",
-    "mainMenu",
-    {
-      name: "GM Monti Character Generator",
-      label: "Open",
-      hint: "Open the Character Generator.",
-      icon: "fas fa-user-plus",
-      type: GMMontiGenerator,
-      restricted: true
-    }
-  );
+Hooks.on("getSceneControlButtons", (controls) => {
+  controls.push({
+    name: "gm-monti-character-generator",
+    title: "GM Monti Character Generator",
+    icon: "fas fa-user-plus",
+    layer: "TokenLayer",
+    tools: [
+      {
+        name: "open-generator",
+        title: "Open Character Generator",
+        icon: "fas fa-user-plus",
+        button: true,
+        onClick: () => game.gmMontiCharacterGenerator.open()
+      }
+    ],
+    activeTool: "open-generator"
+  });
 });
