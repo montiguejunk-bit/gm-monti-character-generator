@@ -1,5 +1,5 @@
 Hooks.once("ready", () => {
-  console.log("GM Monti Character Generator v0.3.0 loaded");
+  console.log("GM Monti Character Generator v0.3.2 loaded");
 
   game.gmMontiCharacterGenerator = {
     open() {
@@ -18,8 +18,14 @@ Hooks.once("ready", () => {
           }
         },
         render: (html) => {
-          html.find("#gm-monti-generate").click(() => {
-            ui.notifications.info("Generate Character clicked.");
+          html.find("#gm-monti-generate").click(async () => {
+            const actor = await Actor.create({
+              name: "Test Character",
+              type: "character"
+            });
+
+            actor.sheet.render(true);
+            ui.notifications.info("Created Test Character.");
           });
         }
       }).render(true);
