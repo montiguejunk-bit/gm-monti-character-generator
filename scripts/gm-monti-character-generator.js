@@ -34,7 +34,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
     name: "gm-monti-character-generator",
     title: "GM Monti Character Generator",
     icon: "fas fa-user-plus",
-    layer: "TokenLayer",
+    button: true,
     tools: [
       {
         name: "open-generator",
