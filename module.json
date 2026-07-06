@@ -2,7 +2,7 @@
   "id": "gm-monti-character-generator",
   "title": "GM Monti Character Generator",
   "description": "Creates complete D&D 5e (2014) player characters for Foundry VTT.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "authors": [
     {
       "name": "Montigue Junkin"
@@ -27,5 +27,5 @@
   ],
   "url": "https://github.com/montiguejunk-bit/gm-monti-character-generator",
   "manifest": "https://raw.githubusercontent.com/montiguejunk-bit/gm-monti-character-generator/main/module.json",
-  "download": "https://github.com/montiguejunk-bit/gm-monti-character-generator/releases/download/v0.3.0/gm-monti-character-generator.zip"
+  "download": "https://github.com/montiguejunk-bit/gm-monti-character-generator/releases/download/v0.3.1/gm-monti-character-generator.zip"
 }
